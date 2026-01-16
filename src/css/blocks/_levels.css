@@ -1,0 +1,97 @@
+/**
+ * Levels Block
+ *
+ * Practice levels with colored cards.
+ *
+ * @package Lemur
+ */
+
+.block-levels {
+  padding: var(--spacing-16) 0;
+  background-color: var(--color-neutral-50);
+}
+
+.block-levels__header {
+  text-align: center;
+  max-width: var(--content-maxWidth);
+  margin: 0 auto var(--spacing-12);
+}
+
+.block-levels__title {
+  font-size: var(--fontSize-3xl);
+  font-weight: var(--fontWeight-bold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-4);
+
+  @media (min-width: 768px) {
+    font-size: var(--fontSize-4xl);
+  }
+}
+
+.block-levels__intro {
+  font-size: var(--fontSize-lg);
+  color: var(--color-text-secondary);
+  line-height: var(--lineHeight-relaxed);
+}
+
+.levels-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-6);
+
+  @media (min-width: 640px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+}
+
+/* Level Card */
+.level-card {
+  background-color: var(--color-bg-primary);
+  border: 1px solid var(--color-border-default);
+  border-left: 4px solid var(--color-primary);
+  border-radius: var(--borderRadius-lg);
+  padding: var(--spacing-6);
+  transition: border-color var(--transition-base), transform var(--transition-base);
+
+  &:hover {
+    border-color: var(--color-primary-300);
+    transform: translateY(-2px);
+  }
+}
+
+.level-card__header {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  margin-bottom: var(--spacing-3);
+}
+
+.level-card__icon {
+  font-size: var(--fontSize-2xl);
+}
+
+.level-card__title {
+  font-size: var(--fontSize-xl);
+  font-weight: var(--fontWeight-semibold);
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.level-card__description {
+  color: var(--color-text-secondary);
+  line-height: var(--lineHeight-relaxed);
+  margin-bottom: var(--spacing-3);
+}
+
+.level-card__requirements {
+  font-size: var(--fontSize-sm);
+  color: var(--color-text-tertiary);
+
+  strong {
+    color: var(--color-text-secondary);
+  }
+}

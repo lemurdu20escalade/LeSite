@@ -1,0 +1,182 @@
+/**
+ * Alerts Component
+ *
+ * Notification messages for success, warning, error, and info states.
+ *
+ * @package Lemur
+ */
+
+/* ==========================================================================
+   Base Alert
+   ========================================================================== */
+
+.alert {
+  display: flex;
+  gap: var(--spacing-3);
+  padding: var(--spacing-4);
+  border-radius: var(--borderRadius-md);
+  border: 1px solid transparent;
+  border-left-width: 4px;
+  font-size: var(--fontSize-sm);
+  line-height: var(--lineHeight-relaxed);
+}
+
+.alert__icon {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  margin-top: 1px;
+}
+
+.alert__content {
+  flex: 1;
+  min-width: 0;
+}
+
+.alert__title {
+  font-weight: var(--fontWeight-semibold);
+  margin-bottom: var(--spacing-1);
+}
+
+.alert__message {
+  margin: 0;
+}
+
+.alert__message a {
+  font-weight: var(--fontWeight-medium);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.alert__message a:hover {
+  text-decoration: none;
+}
+
+.alert__dismiss {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  margin: calc(var(--spacing-1) * -1);
+  padding: 0;
+  background: transparent;
+  border: none;
+  border-radius: var(--borderRadius-sm);
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity var(--transition-fast);
+}
+
+.alert__dismiss:hover {
+  opacity: 1;
+}
+
+.alert__dismiss:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   Alert Variants
+   ========================================================================== */
+
+/* Success */
+.alert--success {
+  background-color: var(--color-state-success-bg);
+  border-color: var(--color-state-success-border);
+  color: var(--color-state-success-text);
+}
+
+.alert--success .alert__icon {
+  color: var(--color-state-success);
+}
+
+.alert--success .alert__message a {
+  color: var(--color-state-success-text);
+}
+
+/* Warning */
+.alert--warning {
+  background-color: var(--color-state-warning-bg);
+  border-color: var(--color-state-warning-border);
+  color: var(--color-state-warning-text);
+}
+
+.alert--warning .alert__icon {
+  color: var(--color-state-warning);
+}
+
+.alert--warning .alert__message a {
+  color: var(--color-state-warning-text);
+}
+
+/* Error */
+.alert--error {
+  background-color: var(--color-state-error-bg);
+  border-color: var(--color-state-error-border);
+  color: var(--color-state-error-text);
+}
+
+.alert--error .alert__icon {
+  color: var(--color-state-error);
+}
+
+.alert--error .alert__message a {
+  color: var(--color-state-error-text);
+}
+
+/* Info */
+.alert--info {
+  background-color: var(--color-state-info-bg);
+  border-color: var(--color-state-info-border);
+  color: var(--color-state-info-text);
+}
+
+.alert--info .alert__icon {
+  color: var(--color-state-info);
+}
+
+.alert--info .alert__message a {
+  color: var(--color-state-info-text);
+}
+
+/* ==========================================================================
+   Alert Sizes
+   ========================================================================== */
+
+.alert--sm {
+  padding: var(--spacing-3);
+  font-size: var(--fontSize-xs);
+}
+
+.alert--lg {
+  padding: var(--spacing-5);
+  font-size: var(--fontSize-base);
+}
+
+/* ==========================================================================
+   Inline Alert (no background)
+   ========================================================================== */
+
+.alert--inline {
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
+.alert--inline.alert--success { color: var(--color-state-success); }
+.alert--inline.alert--warning { color: var(--color-state-warning); }
+.alert--inline.alert--error { color: var(--color-state-error); }
+.alert--inline.alert--info { color: var(--color-state-info); }
+
+/* ==========================================================================
+   Accessibility
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .alert__dismiss {
+    transition: none;
+  }
+}

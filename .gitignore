@@ -1,0 +1,41 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# IDE
+.idea/
+.vscode/
+*.sublime-*
+
+# Composer
+/vendor/
+
+# Node.js
+node_modules/
+package-lock.json
+npm-debug.log*
+
+# Build
+/dist/
+/build/
+
+# Cache
+.cache/
+*.cache
+
+# Logs
+*.log
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Temporary
+*.tmp
+*.temp
+
+# Seed data (contains real organization data)
+/includes/seed-data.php

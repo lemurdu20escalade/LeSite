@@ -1,0 +1,32 @@
+/**
+ * Border Utilities
+ *
+ * Border radius and border utilities based on design tokens.
+ *
+ * @package Lemur
+ */
+
+/* Border radius */
+.rounded-none { border-radius: var(--borderRadius-none); }
+.rounded-sm { border-radius: var(--borderRadius-sm); }
+.rounded-md { border-radius: var(--borderRadius-md); }
+.rounded-lg { border-radius: var(--borderRadius-lg); }
+.rounded-xl { border-radius: var(--borderRadius-xl); }
+.rounded-2xl { border-radius: var(--borderRadius-2xl); }
+.rounded-full { border-radius: var(--borderRadius-full); }
+
+/* Border width */
+.border-0 { border-width: 0; }
+.border { border-width: 1px; }
+.border-2 { border-width: 2px; }
+
+/* Border style */
+.border-solid { border-style: solid; }
+.border-dashed { border-style: dashed; }
+.border-none { border-style: none; }
+
+/* Border colors */
+.border-default { border-color: var(--color-border-default); }
+.border-strong { border-color: var(--color-border-strong); }
+.border-focus { border-color: var(--color-border-focus); }
+.border-transparent { border-color: transparent; }

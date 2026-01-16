@@ -1,0 +1,338 @@
+/**
+ * Transport Lines Component
+ *
+ * Badges for metro, bus, tram, and RER lines (Paris/IDF style).
+ * Based on official RATP/IDFM signage standards.
+ *
+ * @package Lemur
+ * @see https://www.ratp.fr/plans-lignes (reference)
+ */
+
+/* ==========================================================================
+   Transport Lines Container
+   ========================================================================== */
+
+.transport-lines {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-3);
+}
+
+.transport-line {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-3);
+    font-size: var(--fontSize-sm);
+}
+
+/* ==========================================================================
+   Transport Badge (Icon + Line Number)
+   ========================================================================== */
+
+.transport-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    line-height: 1;
+}
+
+.transport-badge__icon {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.transport-badge__icon svg {
+    display: block;
+}
+
+/* ==========================================================================
+   Line Number Badge - Base Styles
+   ========================================================================== */
+
+.transport-badge__line {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 22px;
+    height: 22px;
+    padding: 0 6px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    color: #fff;
+    background-color: var(--color-neutral-600);
+    border-radius: 11px;
+}
+
+/* Single digit/letter badges - circular */
+.transport-badge__line[data-line="1"],
+.transport-badge__line[data-line="2"],
+.transport-badge__line[data-line="3"],
+.transport-badge__line[data-line="4"],
+.transport-badge__line[data-line="5"],
+.transport-badge__line[data-line="6"],
+.transport-badge__line[data-line="7"],
+.transport-badge__line[data-line="8"],
+.transport-badge__line[data-line="9"],
+.transport-badge__line[data-line="A"],
+.transport-badge__line[data-line="B"],
+.transport-badge__line[data-line="C"],
+.transport-badge__line[data-line="D"],
+.transport-badge__line[data-line="E"] {
+    min-width: 22px;
+    width: 22px;
+    padding: 0;
+    border-radius: 50%;
+}
+
+/* Two digit badges - slightly wider */
+.transport-badge__line[data-line="10"],
+.transport-badge__line[data-line="11"],
+.transport-badge__line[data-line="12"],
+.transport-badge__line[data-line="13"],
+.transport-badge__line[data-line="14"] {
+    min-width: 26px;
+    padding: 0 4px;
+}
+
+/* "bis" suffix badges - pill shape with smaller text */
+.transport-badge__line[data-line="3bis"],
+.transport-badge__line[data-line="7bis"] {
+    min-width: 36px;
+    padding: 0 6px;
+    font-size: 11px;
+    letter-spacing: -0.03em;
+}
+
+/* ==========================================================================
+   Metro Lines - Official RATP Colors (2024)
+   ========================================================================== */
+
+.transport-badge--metro .transport-badge__line[data-line="1"] {
+    background-color: #ffcd00;
+    color: #1d1d1b;
+}
+
+.transport-badge--metro .transport-badge__line[data-line="2"] {
+    background-color: #003da5;
+    color: #fff;
+}
+
+.transport-badge--metro .transport-badge__line[data-line="3"] {
+    background-color: #9b993a;
+    color: #fff;
+}
+
+.transport-badge--metro .transport-badge__line[data-line="3bis"] {
+    background-color: #89c7d6;
+    color: #1d1d1b;
+}
+
+.transport-badge--metro .transport-badge__line[data-line="4"] {
+    background-color: #bb4d98;
+    color: #fff;
+}
+
+.transport-badge--metro .transport-badge__line[data-line="5"] {
+    background-color: #f28e42;
+    color: #1d1d1b;
+}
+
+.transport-badge--metro .transport-badge__line[data-line="6"] {
+    background-color: #77c696;
+    color: #1d1d1b;
+}
+
+.transport-badge--metro .transport-badge__line[data-line="7"] {
+    background-color: #f59eb3;
+    color: #1d1d1b;
+}
+
+.transport-badge--metro .transport-badge__line[data-line="7bis"] {
+    background-color: #77c696;
+    color: #1d1d1b;
+}
+
+.transport-badge--metro .transport-badge__line[data-line="8"] {
+    background-color: #c5a3cd;
+    color: #1d1d1b;
+}
+
+.transport-badge--metro .transport-badge__line[data-line="9"] {
+    background-color: #cdc83f;
+    color: #1d1d1b;
+}
+
+.transport-badge--metro .transport-badge__line[data-line="10"] {
+    background-color: #dfb039;
+    color: #1d1d1b;
+}
+
+.transport-badge--metro .transport-badge__line[data-line="11"] {
+    background-color: #8c5a2f;
+    color: #fff;
+}
+
+.transport-badge--metro .transport-badge__line[data-line="12"] {
+    background-color: #007e49;
+    color: #fff;
+}
+
+.transport-badge--metro .transport-badge__line[data-line="13"] {
+    background-color: #89c7d6;
+    color: #1d1d1b;
+}
+
+.transport-badge--metro .transport-badge__line[data-line="14"] {
+    background-color: #67328e;
+    color: #fff;
+}
+
+/* ==========================================================================
+   Bus Lines - Official IDFM Green
+   ========================================================================== */
+
+.transport-badge--bus .transport-badge__line {
+    background-color: #00814f;
+    color: #fff;
+    border-radius: 4px;
+    min-width: 28px;
+    padding: 0 6px;
+}
+
+/* ==========================================================================
+   Tram Lines - Official RATP Colors
+   ========================================================================== */
+
+.transport-badge--tram .transport-badge__line {
+    border-radius: 4px;
+    min-width: 28px;
+}
+
+.transport-badge--tram .transport-badge__line[data-line="T1"],
+.transport-badge--tram .transport-badge__line[data-line="1"] {
+    background-color: #003da5;
+    color: #fff;
+}
+
+.transport-badge--tram .transport-badge__line[data-line="T2"],
+.transport-badge--tram .transport-badge__line[data-line="2"] {
+    background-color: #bb4d98;
+    color: #fff;
+}
+
+.transport-badge--tram .transport-badge__line[data-line="T3a"],
+.transport-badge--tram .transport-badge__line[data-line="3a"] {
+    background-color: #f28e42;
+    color: #1d1d1b;
+}
+
+.transport-badge--tram .transport-badge__line[data-line="T3b"],
+.transport-badge--tram .transport-badge__line[data-line="3b"] {
+    background-color: #00a95c;
+    color: #fff;
+}
+
+.transport-badge--tram .transport-badge__line[data-line="T4"],
+.transport-badge--tram .transport-badge__line[data-line="4"] {
+    background-color: #ffcd00;
+    color: #1d1d1b;
+}
+
+.transport-badge--tram .transport-badge__line[data-line="T5"],
+.transport-badge--tram .transport-badge__line[data-line="5"] {
+    background-color: #6e491e;
+    color: #fff;
+}
+
+.transport-badge--tram .transport-badge__line[data-line="T6"],
+.transport-badge--tram .transport-badge__line[data-line="6"] {
+    background-color: #e3051b;
+    color: #fff;
+}
+
+.transport-badge--tram .transport-badge__line[data-line="T7"],
+.transport-badge--tram .transport-badge__line[data-line="7"] {
+    background-color: #8c5a2f;
+    color: #fff;
+}
+
+.transport-badge--tram .transport-badge__line[data-line="T8"],
+.transport-badge--tram .transport-badge__line[data-line="8"] {
+    background-color: #9b993a;
+    color: #fff;
+}
+
+/* ==========================================================================
+   RER Lines - Official RATP Colors
+   ========================================================================== */
+
+.transport-badge--rer .transport-badge__line {
+    border-radius: 4px;
+}
+
+.transport-badge--rer .transport-badge__line[data-line="A"] {
+    background-color: #e3051b;
+    color: #fff;
+}
+
+.transport-badge--rer .transport-badge__line[data-line="B"] {
+    background-color: #4b92db;
+    color: #fff;
+}
+
+.transport-badge--rer .transport-badge__line[data-line="C"] {
+    background-color: #ffcd00;
+    color: #1d1d1b;
+}
+
+.transport-badge--rer .transport-badge__line[data-line="D"] {
+    background-color: #00a95c;
+    color: #fff;
+}
+
+.transport-badge--rer .transport-badge__line[data-line="E"] {
+    background-color: #bb4d98;
+    color: #fff;
+}
+
+/* ==========================================================================
+   Station Name
+   ========================================================================== */
+
+.transport-line__station {
+    color: inherit;
+    font-size: var(--fontSize-sm);
+}
+
+/* ==========================================================================
+   Footer Variant - Dark Background Optimization
+   ========================================================================== */
+
+.site-footer .transport-lines {
+    margin-top: var(--spacing-4);
+}
+
+.site-footer .transport-line__station {
+    color: var(--color-neutral-300);
+}
+
+/* Subtle border for badges on dark bg */
+.site-footer .transport-badge__line {
+    outline: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ==========================================================================
+   Accessibility
+   ========================================================================== */
+
+@media (prefers-contrast: high) {
+    .transport-badge__line {
+        border: 2px solid currentColor;
+    }
+}

@@ -1,0 +1,460 @@
+/**
+ * Email Obfuscator Component
+ *
+ * Click-to-reveal email protection with scramble animation.
+ *
+ * States:
+ * - Default: Shows obfuscated text with hint
+ * - Decoding: Shows scramble animation
+ * - Revealed: Shows clickable mailto link with copy button
+ *
+ * @package Lemur
+ */
+
+/* ==========================================================================
+   Base Button (Hidden State)
+   ========================================================================== */
+
+.lemur-email {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  padding: var(--spacing-2) var(--spacing-3);
+  font-family: inherit;
+  font-size: var(--font-size-sm);
+  line-height: 1.4;
+  color: var(--color-primary);
+  background-color: var(--color-primary-50, rgba(var(--color-primary-rgb), 0.08));
+  border: 1px solid var(--color-primary-200, rgba(var(--color-primary-rgb), 0.2));
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.lemur-email:hover {
+  background-color: var(--color-primary-100, rgba(var(--color-primary-rgb), 0.12));
+  border-color: var(--color-primary-300, rgba(var(--color-primary-rgb), 0.3));
+}
+
+.lemur-email:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Inline variant (used in content) */
+.lemur-email--inline {
+  padding: var(--spacing-1) var(--spacing-2);
+  font-size: inherit;
+  vertical-align: baseline;
+}
+
+/* ==========================================================================
+   Icon
+   ========================================================================== */
+
+.lemur-email__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: currentColor;
+  opacity: 0.8;
+}
+
+.lemur-email__icon svg {
+  display: block;
+}
+
+/* ==========================================================================
+   Text Container
+   ========================================================================== */
+
+.lemur-email__text {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+
+.lemur-email__obfuscated,
+.lemur-email__label {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 0.9em;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ==========================================================================
+   Hint
+   ========================================================================== */
+
+.lemur-email__hint {
+  font-size: var(--font-size-xs);
+  color: var(--color-gray-500);
+  margin-left: var(--spacing-2);
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
+}
+
+.lemur-email:hover .lemur-email__hint {
+  opacity: 1;
+}
+
+/* Hide hint on small screens for inline variant */
+.lemur-email--inline .lemur-email__hint {
+  display: none;
+}
+
+@media (min-width: 640px) {
+  .lemur-email--inline .lemur-email__hint {
+    display: inline;
+  }
+}
+
+/* ==========================================================================
+   Compact Mode (for tight spaces like footer)
+   ========================================================================== */
+
+.lemur-email--compact {
+  padding: var(--spacing-1) var(--spacing-2);
+  gap: var(--spacing-1);
+  font-size: var(--font-size-sm);
+}
+
+.lemur-email--compact .lemur-email__text {
+  display: none;
+}
+
+.lemur-email--compact .lemur-email__hint {
+  font-size: var(--font-size-xs);
+  margin-left: 0;
+}
+
+/* Compact revealed state */
+.lemur-email--compact.lemur-email--revealed {
+  padding: var(--spacing-1) var(--spacing-2);
+  gap: var(--spacing-2);
+}
+
+.lemur-email--compact.lemur-email--revealed .lemur-email__text,
+.lemur-email--compact.lemur-email--revealed .lemur-email__email {
+  display: inline;
+}
+
+.lemur-email--compact.lemur-email--revealed .lemur-email__hint {
+  display: none;
+}
+
+.lemur-email--compact .lemur-email__copy {
+  width: 24px;
+  height: 24px;
+}
+
+.lemur-email--compact .lemur-email__copy svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* ==========================================================================
+   Button Mode (when used with label, like "Contacter")
+   ========================================================================== */
+
+/* When there's a label, hide the hint initially - the label IS the hint */
+.lemur-email:has(.lemur-email__label) .lemur-email__hint {
+  display: none;
+}
+
+/* Base button style */
+.lemur-email--btn {
+  padding: var(--spacing-3) var(--spacing-4);
+  font-weight: 500;
+  border-radius: var(--radius-md);
+  justify-content: center;
+  width: 100%;
+}
+
+.lemur-email--btn .lemur-email__label {
+  font-family: inherit;
+  font-size: var(--font-size-base);
+  letter-spacing: normal;
+}
+
+/* Primary button variant */
+.lemur-email--btn-primary {
+  background-color: #2e7d32 !important;
+  border-color: #2e7d32 !important;
+  color: #ffffff !important;
+}
+
+.lemur-email--btn-primary:hover {
+  background-color: #1b5e20 !important;
+  border-color: #1b5e20 !important;
+}
+
+.lemur-email--btn-primary:focus-visible {
+  outline-color: #2e7d32;
+}
+
+/* Secondary button variant */
+.lemur-email--btn-secondary {
+  background-color: var(--color-gray-100) !important;
+  border-color: var(--color-gray-300) !important;
+  color: var(--color-gray-800) !important;
+}
+
+.lemur-email--btn-secondary:hover {
+  background-color: var(--color-gray-200) !important;
+  border-color: var(--color-gray-400) !important;
+}
+
+/* ==========================================================================
+   Decoding State
+   ========================================================================== */
+
+.lemur-email--decoding {
+  cursor: wait;
+  background-color: var(--color-primary-100, rgba(var(--color-primary-rgb), 0.15));
+}
+
+.lemur-email--decoding .lemur-email__obfuscated,
+.lemur-email--decoding .lemur-email__label {
+  color: var(--color-primary);
+}
+
+.lemur-email--decoding .lemur-email__hint {
+  animation: lemur-email-pulse 1s ease-in-out infinite;
+}
+
+@keyframes lemur-email-pulse {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* ==========================================================================
+   Revealed State
+   ========================================================================== */
+
+.lemur-email--revealed {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  padding: var(--spacing-2) var(--spacing-3);
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: var(--radius-md);
+  opacity: 0;
+  transform: translateY(-2px);
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+}
+
+.lemur-email--revealed.lemur-email--animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Inline variant */
+.lemur-email--inline.lemur-email--revealed {
+  padding: var(--spacing-1) var(--spacing-2);
+}
+
+/* ==========================================================================
+   Revealed Link
+   ========================================================================== */
+
+.lemur-email__link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  color: #1e40af;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.lemur-email__link:hover {
+  color: #1e3a8a;
+  text-decoration: underline;
+}
+
+.lemur-email__link:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+.lemur-email__email {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 0.9em;
+  letter-spacing: 0.02em;
+  color: #1e293b;
+}
+
+/* ==========================================================================
+   Copy Button
+   ========================================================================== */
+
+.lemur-email__copy {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  color: var(--color-gray-500);
+  background-color: transparent;
+  border: 1px solid var(--color-gray-200);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.lemur-email__copy:hover {
+  color: var(--color-gray-700);
+  background-color: var(--color-gray-100);
+  border-color: var(--color-gray-300);
+}
+
+.lemur-email__copy:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.lemur-email__copy svg {
+  display: block;
+}
+
+/* Copy success state */
+.lemur-email__copy--success {
+  color: var(--color-success-600, #16a34a);
+  background-color: var(--color-success-50, #f0fdf4);
+  border-color: var(--color-success-300, #86efac);
+}
+
+/* ==========================================================================
+   Revealed Hint
+   ========================================================================== */
+
+.lemur-email--revealed .lemur-email__hint {
+  font-size: var(--font-size-xs);
+  color: var(--color-success-600, #16a34a);
+  margin-left: auto;
+  padding-left: var(--spacing-2);
+  border-left: 1px solid var(--color-success-200, #bbf7d0);
+}
+
+/* Hide revealed hint on small screens */
+@media (max-width: 479px) {
+  .lemur-email--revealed .lemur-email__hint {
+    display: none;
+  }
+}
+
+/* ==========================================================================
+   Dark Mode Support
+   ========================================================================== */
+
+@media (prefers-color-scheme: dark) {
+  .lemur-email {
+    background-color: rgba(var(--color-primary-rgb), 0.15);
+    border-color: rgba(var(--color-primary-rgb), 0.3);
+  }
+
+  .lemur-email:hover {
+    background-color: rgba(var(--color-primary-rgb), 0.2);
+    border-color: rgba(var(--color-primary-rgb), 0.4);
+  }
+
+  .lemur-email--revealed {
+    background-color: rgba(34, 197, 94, 0.15);
+    border-color: rgba(34, 197, 94, 0.3);
+  }
+
+  .lemur-email__link {
+    color: var(--color-success-400, #4ade80);
+  }
+
+  .lemur-email__link:hover {
+    color: var(--color-success-300, #86efac);
+  }
+
+  .lemur-email__copy {
+    color: var(--color-gray-400);
+    border-color: var(--color-gray-600);
+  }
+
+  .lemur-email__copy:hover {
+    color: var(--color-gray-200);
+    background-color: var(--color-gray-700);
+    border-color: var(--color-gray-500);
+  }
+
+  .lemur-email--revealed .lemur-email__hint {
+    color: var(--color-success-400, #4ade80);
+    border-color: rgba(34, 197, 94, 0.3);
+  }
+}
+
+/* ==========================================================================
+   Reduced Motion
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .lemur-email,
+  .lemur-email--revealed,
+  .lemur-email__link,
+  .lemur-email__copy,
+  .lemur-email__hint {
+    transition: none;
+  }
+
+  .lemur-email--decoding .lemur-email__hint {
+    animation: none;
+    opacity: 1;
+  }
+
+  .lemur-email--revealed {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ==========================================================================
+   Print Styles
+   ========================================================================== */
+
+@media print {
+  /* Show email directly in print */
+  .lemur-email,
+  .lemur-email--revealed {
+    background: none;
+    border: none;
+    padding: 0;
+  }
+
+  .lemur-email__hint,
+  .lemur-email__copy {
+    display: none;
+  }
+
+  .lemur-email__link {
+    color: inherit;
+  }
+
+  .lemur-email__link::after {
+    content: ' (' attr(href) ')';
+    font-size: 0.8em;
+  }
+}

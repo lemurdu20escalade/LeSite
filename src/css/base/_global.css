@@ -1,0 +1,111 @@
+/**
+ * Global Styles
+ *
+ * Base element styling that applies throughout the theme.
+ * Uses design tokens for consistency.
+ *
+ * @package Lemur
+ */
+
+/* Root scroll behavior */
+html {
+  scroll-padding-top: var(--header-height);
+}
+
+/* Body layout */
+body {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-bg-primary);
+}
+
+/* Main content area */
+main {
+  flex: 1;
+}
+
+/* Skip link for accessibility */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: var(--spacing-4);
+  z-index: var(--zIndex-skipLink);
+  padding: var(--spacing-2) var(--spacing-4);
+  background-color: var(--color-bg-inverse);
+  color: var(--color-text-inverse);
+  font-weight: var(--fontWeight-semibold);
+  border-radius: var(--borderRadius-md);
+  transition: top var(--transition-fast);
+
+  &:focus {
+    top: var(--spacing-4);
+  }
+}
+
+/* Selection styling */
+::selection {
+  background-color: var(--color-primary-200);
+  color: var(--color-text-primary);
+}
+
+/* Focus visible for all interactive elements */
+:focus-visible {
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: 2px;
+}
+
+/* Horizontal rule */
+hr {
+  border: none;
+  border-top: 1px solid var(--color-border-default);
+  margin: var(--spacing-8) 0;
+}
+
+/* Blockquote */
+blockquote {
+  padding-left: var(--spacing-4);
+  border-left: 4px solid var(--color-primary-500);
+  font-style: italic;
+  color: var(--color-text-secondary);
+}
+
+/* Code blocks */
+code {
+  font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace;
+  font-size: var(--fontSize-sm);
+  background-color: var(--color-bg-secondary);
+  padding: var(--spacing-1) var(--spacing-2);
+  border-radius: var(--borderRadius-sm);
+}
+
+pre {
+  font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace;
+  font-size: var(--fontSize-sm);
+  background-color: var(--color-bg-secondary);
+  padding: var(--spacing-4);
+  border-radius: var(--borderRadius-md);
+  overflow-x: auto;
+
+  code {
+    padding: 0;
+    background-color: transparent;
+  }
+}
+
+/* Strong and emphasis */
+strong,
+b {
+  font-weight: var(--fontWeight-bold);
+}
+
+em,
+i {
+  font-style: italic;
+}
+
+/* Mark element */
+mark {
+  background-color: var(--color-warning-500);
+  color: var(--color-text-primary);
+  padding: 0 var(--spacing-1);
+}

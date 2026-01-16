@@ -1,0 +1,146 @@
+/**
+ * Button Components
+ *
+ * Button styles following the design system.
+ *
+ * @package Lemur
+ */
+
+/* Base button */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-2);
+  padding: var(--spacing-3) var(--spacing-6);
+  font-family: var(--fontFamily-sans);
+  font-size: var(--fontSize-base);
+  font-weight: var(--fontWeight-semibold);
+  line-height: 1;
+  text-decoration: none;
+  border-radius: var(--borderRadius-md);
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition:
+    background-color var(--transition-fast),
+    border-color var(--transition-fast),
+    color var(--transition-fast),
+    box-shadow var(--transition-fast);
+
+  &:disabled,
+  &.is-disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+}
+
+/* Primary button */
+.btn--primary {
+  background-color: var(--color-bg-accent);
+  color: var(--color-text-inverse);
+
+  &:hover {
+    background-color: var(--color-bg-accent-hover);
+  }
+
+  &:focus-visible {
+    box-shadow: 0 0 0 3px var(--color-primary-200);
+  }
+}
+
+/* Secondary button (outline) */
+.btn--secondary {
+  background-color: transparent;
+  color: var(--color-primary-600);
+  border-color: var(--color-primary-600);
+
+  &:hover {
+    background-color: var(--color-primary-50);
+  }
+
+  &:focus-visible {
+    box-shadow: 0 0 0 3px var(--color-primary-200);
+  }
+}
+
+/* Outline light button (for dark backgrounds) */
+.btn--outline-light {
+  background-color: transparent;
+  color: white;
+  border-color: rgba(255, 255, 255, 0.8);
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: white;
+  }
+
+  &:focus-visible {
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+  }
+}
+
+/* Ghost button */
+.btn--ghost {
+  background-color: transparent;
+  color: var(--color-text-primary);
+
+  &:hover {
+    background-color: var(--color-bg-secondary);
+  }
+
+  &:focus-visible {
+    box-shadow: 0 0 0 3px var(--color-primary-200);
+  }
+}
+
+/* Danger button */
+.btn--danger {
+  background-color: var(--color-state-error);
+  color: var(--color-text-inverse);
+
+  &:hover {
+    background-color: var(--color-error-600);
+  }
+
+  &:focus-visible {
+    box-shadow: 0 0 0 3px var(--color-state-error-bg);
+  }
+}
+
+/* Button sizes */
+.btn--sm {
+  padding: var(--spacing-2) var(--spacing-4);
+  font-size: var(--fontSize-sm);
+}
+
+.btn--lg {
+  padding: var(--spacing-4) var(--spacing-8);
+  font-size: var(--fontSize-lg);
+}
+
+/* Full width button */
+.btn--block {
+  display: flex;
+  width: 100%;
+}
+
+/* Icon only button */
+.btn--icon {
+  padding: var(--spacing-3);
+
+  &.btn--sm {
+    padding: var(--spacing-2);
+  }
+
+  &.btn--lg {
+    padding: var(--spacing-4);
+  }
+}
+
+/* Button with icon */
+.btn__icon {
+  width: 1.25em;
+  height: 1.25em;
+  flex-shrink: 0;
+}

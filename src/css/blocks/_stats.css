@@ -1,0 +1,82 @@
+/**
+ * Stats Block
+ *
+ * Key statistics displayed in a grid layout.
+ *
+ * @package Lemur
+ */
+
+.block-stats {
+  padding: var(--spacing-16) 0;
+  background-color: var(--color-primary);
+  color: var(--color-text-inverse);
+}
+
+.block-stats__title {
+  font-size: var(--fontSize-3xl);
+  font-weight: var(--fontWeight-bold);
+  text-align: center;
+  margin-bottom: var(--spacing-12);
+
+  @media (min-width: 768px) {
+    font-size: var(--fontSize-4xl);
+  }
+}
+
+.block-stats__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-8);
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Stat Item */
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: var(--spacing-6);
+}
+
+.stat-item__icon {
+  font-size: var(--fontSize-3xl);
+  margin-bottom: var(--spacing-3);
+}
+
+.stat-item__value {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: var(--spacing-1);
+}
+
+.stat-item__number {
+  font-size: var(--fontSize-4xl);
+  font-weight: var(--fontWeight-bold);
+  line-height: 1;
+
+  @media (min-width: 768px) {
+    font-size: var(--fontSize-5xl);
+  }
+}
+
+.stat-item__suffix {
+  font-size: var(--fontSize-2xl);
+  font-weight: var(--fontWeight-semibold);
+}
+
+.stat-item__label {
+  font-size: var(--fontSize-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: var(--spacing-2);
+  opacity: 0.9;
+
+  @media (min-width: 768px) {
+    font-size: var(--fontSize-base);
+  }
+}

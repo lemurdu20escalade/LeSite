@@ -1,0 +1,67 @@
+/**
+ * Call to Action Block
+ *
+ * Prominent CTA sections for conversion.
+ *
+ * @package Lemur
+ */
+
+.block-cta {
+  padding: var(--spacing-16) 0;
+  text-align: center;
+}
+
+.block-cta__inner {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.block-cta__title {
+  font-size: var(--fontSize-3xl);
+  font-weight: var(--fontWeight-bold);
+  margin-bottom: var(--spacing-4);
+
+  @media (min-width: 768px) {
+    font-size: var(--fontSize-4xl);
+  }
+}
+
+.block-cta__text {
+  font-size: var(--fontSize-lg);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--spacing-8);
+}
+
+.block-cta__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--spacing-4);
+}
+
+/* Variant: With background */
+.block-cta--highlight {
+  background-color: var(--color-primary-50);
+  border-radius: var(--borderRadius-xl);
+  margin: var(--spacing-8);
+  padding: var(--spacing-12);
+
+  @media (min-width: 768px) {
+    padding: var(--spacing-16);
+    margin: var(--spacing-12);
+  }
+}
+
+/* Variant: Dark */
+.block-cta--dark {
+  background-color: var(--color-bg-inverse);
+
+  .block-cta__title,
+  .block-cta__text {
+    color: var(--color-text-inverse);
+  }
+
+  .block-cta__text {
+    opacity: 0.8;
+  }
+}

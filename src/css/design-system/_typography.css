@@ -1,0 +1,93 @@
+/**
+ * Typography System
+ *
+ * Defines text styles using design tokens.
+ *
+ * @package Lemur
+ */
+
+/* Base typography */
+body {
+  font-family: var(--fontFamily-sans);
+  font-size: var(--fontSize-base);
+  font-weight: var(--fontWeight-normal);
+  line-height: var(--lineHeight-normal);
+  color: var(--color-text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  font-family: var(--fontFamily-heading);
+  font-weight: var(--fontWeight-bold);
+  line-height: var(--lineHeight-tight);
+  color: var(--color-text-primary);
+  margin-top: 0;
+  margin-bottom: var(--spacing-4);
+}
+
+h1, .h1 { font-size: var(--fontSize-4xl); }
+h2, .h2 { font-size: var(--fontSize-3xl); }
+h3, .h3 { font-size: var(--fontSize-2xl); }
+h4, .h4 { font-size: var(--fontSize-xl); }
+h5, .h5 { font-size: var(--fontSize-lg); }
+h6, .h6 { font-size: var(--fontSize-base); }
+
+/* Paragraph */
+p {
+  margin-top: 0;
+  margin-bottom: var(--spacing-4);
+}
+
+/* Links */
+a {
+  color: var(--color-text-link);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+
+  &:hover {
+    color: var(--color-text-link-hover);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-border-focus);
+    outline-offset: 2px;
+  }
+}
+
+/* Text utilities */
+.text-xs { font-size: var(--fontSize-xs); }
+.text-sm { font-size: var(--fontSize-sm); }
+.text-base { font-size: var(--fontSize-base); }
+.text-lg { font-size: var(--fontSize-lg); }
+.text-xl { font-size: var(--fontSize-xl); }
+.text-2xl { font-size: var(--fontSize-2xl); }
+.text-3xl { font-size: var(--fontSize-3xl); }
+.text-4xl { font-size: var(--fontSize-4xl); }
+
+.font-normal { font-weight: var(--fontWeight-normal); }
+.font-medium { font-weight: var(--fontWeight-medium); }
+.font-semibold { font-weight: var(--fontWeight-semibold); }
+.font-bold { font-weight: var(--fontWeight-bold); }
+
+.text-primary { color: var(--color-text-primary); }
+.text-secondary { color: var(--color-text-secondary); }
+.text-muted { color: var(--color-text-muted); }
+
+.text-left { text-align: left; }
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+
+/* Lead text */
+.lead {
+  font-size: var(--fontSize-lg);
+  line-height: var(--lineHeight-relaxed);
+  color: var(--color-text-secondary);
+}
+
+/* Small text */
+small, .small {
+  font-size: var(--fontSize-sm);
+}

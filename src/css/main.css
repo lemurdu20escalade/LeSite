@@ -1,0 +1,116 @@
+/**
+ * Lemur Escalade - Main Stylesheet
+ *
+ * This file orchestrates all CSS imports following ITCSS architecture:
+ * 1. Design System (tokens, colors, typography, spacing, shadows, borders, breakpoints)
+ * 2. Base (reset, global)
+ * 3. Components (buttons, inputs, cards, navigation)
+ * 4. Blocks (hero, cta, features)
+ * 5. Pages (home, single)
+ *
+ * @package Lemur
+ */
+
+/* ==========================================================================
+   1. Design System - Tokens & Utilities
+   ========================================================================== */
+@import 'design-system/_tokens.css';
+@import 'design-system/_colors.css';
+@import 'design-system/_typography.css';
+@import 'design-system/_spacing.css';
+@import 'design-system/_shadows.css';
+@import 'design-system/_borders.css';
+@import 'design-system/_breakpoints.css';
+
+/* ==========================================================================
+   2. Base - Reset & Global Styles
+   ========================================================================== */
+@import 'base/_reset.css';
+@import 'base/_global.css';
+@import 'base/_images.css';
+
+/* ==========================================================================
+   3. Components - Reusable UI Elements
+   ========================================================================== */
+@import 'components/_buttons.css';
+@import 'components/_inputs.css';
+@import 'components/_cards.css';
+@import 'components/_navigation.css';
+@import 'components/_footer.css';
+@import 'components/_transport.css';
+@import 'components/_lightbox.css';
+@import 'components/_gallery-grid.css';
+@import 'components/_posts-grid.css';
+@import 'components/_single-post.css';
+@import 'components/_email-obfuscator.css';
+@import 'components/_accessibility.css';
+@import 'components/_breadcrumb.css';
+@import 'components/_alerts.css';
+
+/* ==========================================================================
+   4. Blocks - Content Sections
+   ========================================================================== */
+@import 'blocks/_hero.css';
+@import 'blocks/_cta.css';
+@import 'blocks/_features.css';
+@import 'blocks/_page-builder.css';
+@import 'blocks/_stats.css';
+@import 'blocks/_values.css';
+@import 'blocks/_partners.css';
+@import 'blocks/_activities.css';
+@import 'blocks/_levels.css';
+@import 'blocks/_locations.css';
+@import 'blocks/_equipment.css';
+@import 'blocks/_adhesion.css';
+
+/* ==========================================================================
+   5. Pages - Page-Specific Styles
+   ========================================================================== */
+@import 'pages/_home.css';
+@import 'pages/_single.css';
+@import 'pages/_events.css';
+@import 'pages/_planning.css';
+@import 'pages/_faq.css';
+@import 'pages/_galerie.css';
+@import 'pages/_contact.css';
+@import 'pages/_collectifs.css';
+@import 'pages/_404.css';
+@import 'pages/_search.css';
+@import 'pages/_member-area.css';
+
+/* ==========================================================================
+   6. Utilities - Override Classes
+   ========================================================================== */
+
+/* Screen reader only */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Visually hidden but focusable */
+.sr-only-focusable:focus,
+.sr-only-focusable:active {
+  position: static;
+  width: auto;
+  height: auto;
+  padding: inherit;
+  margin: inherit;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
+
+/* Main content area */
+.site-main {
+  min-height: calc(100vh - var(--header-height));
+  padding-top: var(--spacing-8);
+  padding-bottom: var(--spacing-16);
+}

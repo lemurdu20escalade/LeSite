@@ -1,0 +1,32 @@
+{
+  "name": "lemur/theme",
+  "description": "Theme WordPress pour Lemur Escalade - Club d'escalade FSGT",
+  "type": "wordpress-theme",
+  "license": "GPL-2.0-or-later",
+  "authors": [
+    {
+      "name": "Lemur Escalade",
+      "homepage": "https://lemur-escalade.fr"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Lemur\\": "modules/"
+    },
+    "files": [
+      "includes/carbon-fields-boot.php",
+      "includes/helpers.php",
+      "includes/template-functions.php",
+      "includes/accessibility-helpers.php",
+      "includes/member-helpers.php"
+    ]
+  },
+  "require": {
+    "php": ">=8.4",
+    "htmlburger/carbon-fields": "^3.6"
+  },
+  "config": {
+    "optimize-autoloader": true,
+    "sort-packages": true
+  }
+}

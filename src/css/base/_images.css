@@ -1,0 +1,207 @@
+/**
+ * Image Styles
+ *
+ * Responsive images, lazy loading, aspect ratios, and placeholders.
+ *
+ * @package Lemur
+ */
+
+/* =============================================================================
+   Responsive Images
+   ============================================================================= */
+
+.responsive-image {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* =============================================================================
+   Lazy Loading
+   ============================================================================= */
+
+/**
+ * Fade-in effect for lazy-loaded images
+ *
+ * Strategy: Images start visible by default. JS adds .lazy-fade class
+ * to enable the fade effect. This ensures images are visible if JS fails.
+ */
+
+/* Images with fade effect enabled (JS adds this class) */
+img.lazy-fade {
+  opacity: 0;
+  transition: opacity 0.3s ease-in;
+}
+
+img.lazy-fade.loaded {
+  opacity: 1;
+}
+
+/* Fallback: auto-show images after animation delay if JS fails */
+img.lazy-fade:not(.loaded) {
+  animation: lazy-fade-fallback 0s 2s forwards;
+}
+
+@keyframes lazy-fade-fallback {
+  to {
+    opacity: 1;
+  }
+}
+
+/* Disable transitions and animations for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  img.lazy-fade {
+    opacity: 1;
+    transition: none;
+    animation: none;
+  }
+}
+
+/* =============================================================================
+   Picture Element
+   ============================================================================= */
+
+picture {
+  display: block;
+}
+
+picture img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* =============================================================================
+   Aspect Ratio Containers
+   ============================================================================= */
+
+/**
+ * Aspect ratio containers prevent layout shift (CLS)
+ * by reserving space before the image loads.
+ */
+.aspect-ratio {
+  position: relative;
+  overflow: hidden;
+}
+
+.aspect-ratio img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Common aspect ratios */
+.aspect-ratio--16-9 {
+  padding-bottom: 56.25%; /* 9 / 16 */
+}
+
+.aspect-ratio--4-3 {
+  padding-bottom: 75%; /* 3 / 4 */
+}
+
+.aspect-ratio--3-2 {
+  padding-bottom: 66.67%; /* 2 / 3 */
+}
+
+.aspect-ratio--1-1 {
+  padding-bottom: 100%; /* Square */
+}
+
+.aspect-ratio--3-4 {
+  padding-bottom: 133.33%; /* 4 / 3 portrait */
+}
+
+.aspect-ratio--2-3 {
+  padding-bottom: 150%; /* 3 / 2 portrait */
+}
+
+/* Hero aspect ratios */
+.aspect-ratio--hero {
+  padding-bottom: 41.67%; /* 800 / 1920 */
+}
+
+.aspect-ratio--hero-mobile {
+  padding-bottom: 65.1%; /* 500 / 768 */
+}
+
+/* =============================================================================
+   Placeholders
+   ============================================================================= */
+
+.placeholder {
+  background-color: var(--color-neutral-200, #e5e5e5);
+}
+
+/* Animated placeholder */
+.placeholder--animated {
+  background: linear-gradient(
+    90deg,
+    var(--color-neutral-200, #e5e5e5) 25%,
+    var(--color-neutral-100, #f5f5f5) 50%,
+    var(--color-neutral-200, #e5e5e5) 75%
+  );
+  background-size: 200% 100%;
+  animation: placeholder-shimmer 1.5s ease-in-out infinite;
+}
+
+@keyframes placeholder-shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Disable animation for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .placeholder--animated {
+    animation: none;
+    background-size: 100% 100%;
+  }
+}
+
+/* =============================================================================
+   Error State
+   ============================================================================= */
+
+img.error {
+  background-color: var(--color-neutral-200, #e5e5e5);
+  min-height: 100px;
+}
+
+/* =============================================================================
+   Object Fit Utilities
+   ============================================================================= */
+
+.object-cover {
+  object-fit: cover;
+}
+
+.object-contain {
+  object-fit: contain;
+}
+
+.object-fill {
+  object-fit: fill;
+}
+
+.object-none {
+  object-fit: none;
+}
+
+/* Object position */
+.object-center {
+  object-position: center;
+}
+
+.object-top {
+  object-position: top;
+}
+
+.object-bottom {
+  object-position: bottom;
+}

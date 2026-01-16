@@ -1,0 +1,122 @@
+/**
+ * Activities Block
+ *
+ * Climbing activities with alternating layout.
+ *
+ * @package Lemur
+ */
+
+.block-activities {
+  padding: var(--spacing-16) 0;
+}
+
+.block-activities__title {
+  font-size: var(--fontSize-3xl);
+  font-weight: var(--fontWeight-bold);
+  text-align: center;
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-12);
+
+  @media (min-width: 768px) {
+    font-size: var(--fontSize-4xl);
+  }
+}
+
+.activities-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-12);
+}
+
+/* Activity Item */
+.activity-item {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-8);
+  align-items: center;
+
+  @media (min-width: 768px) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.activity-item--reversed {
+  @media (min-width: 768px) {
+    .activity-item__image {
+      order: 2;
+    }
+  }
+}
+
+.activity-item__image {
+  border-radius: var(--borderRadius-lg);
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+}
+
+.activity-item__content {
+  padding: var(--spacing-4) 0;
+}
+
+.activity-item__icon {
+  font-size: var(--fontSize-4xl);
+  display: block;
+  margin-bottom: var(--spacing-2);
+}
+
+.activity-item__title {
+  font-size: var(--fontSize-2xl);
+  font-weight: var(--fontWeight-bold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-4);
+}
+
+.activity-item__description {
+  color: var(--color-text-secondary);
+  margin-bottom: var(--spacing-4);
+  line-height: var(--lineHeight-relaxed);
+
+  p {
+    margin-bottom: var(--spacing-2);
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.activity-item__features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--spacing-4);
+
+  li {
+    position: relative;
+    padding-left: var(--spacing-6);
+    margin-bottom: var(--spacing-2);
+    color: var(--color-text-secondary);
+
+    &::before {
+      content: '\2713';
+      position: absolute;
+      left: 0;
+      color: var(--color-primary);
+      font-weight: var(--fontWeight-bold);
+    }
+  }
+}
+
+.activity-item__level {
+  display: inline-block;
+  padding: var(--spacing-1) var(--spacing-3);
+  background-color: var(--color-primary-100);
+  color: var(--color-primary-700);
+  border-radius: var(--borderRadius-full);
+  font-size: var(--fontSize-sm);
+  font-weight: var(--fontWeight-medium);
+}

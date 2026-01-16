@@ -1,0 +1,281 @@
+/**
+ * Contact Page
+ *
+ * Styles for contact template with info cards, map and hours.
+ *
+ * @package Lemur
+ */
+
+/* ==========================================================================
+   Layout
+   ========================================================================== */
+
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-8);
+}
+
+@media (min-width: 1024px) {
+  .contact-layout {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-12);
+  }
+}
+
+/* ==========================================================================
+   Contact Info
+   ========================================================================== */
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-6);
+}
+
+/* ==========================================================================
+   Contact Card
+   ========================================================================== */
+
+.contact-card {
+  display: flex;
+  gap: var(--spacing-4);
+  padding: var(--spacing-6);
+  background: var(--color-bg-primary);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--borderRadius-lg);
+}
+
+.contact-card__icon {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-primary-100);
+  border-radius: var(--borderRadius-md);
+  color: var(--color-primary-600);
+}
+
+.contact-card__content {
+  flex: 1;
+  min-width: 0;
+}
+
+.contact-card__title {
+  font-size: var(--fontSize-lg);
+  font-weight: var(--fontWeight-semibold);
+  margin-bottom: var(--spacing-2);
+  color: var(--color-text-primary);
+}
+
+.contact-card__address {
+  font-style: normal;
+  line-height: var(--lineHeight-relaxed);
+  color: var(--color-text-secondary);
+}
+
+.contact-card__link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-1);
+  margin-top: var(--spacing-3);
+  font-size: var(--fontSize-sm);
+  font-weight: var(--fontWeight-medium);
+  color: var(--color-primary-600);
+  text-decoration: none;
+}
+
+.contact-card__link:hover {
+  text-decoration: underline;
+  color: var(--color-primary-700);
+}
+
+.contact-card__link:focus-visible {
+  outline: 2px solid var(--color-primary-500);
+  outline-offset: 2px;
+  border-radius: var(--borderRadius-sm);
+}
+
+.contact-card__email,
+.contact-card__phone {
+  display: inline-block;
+  font-size: var(--fontSize-lg);
+  font-weight: var(--fontWeight-medium);
+  color: var(--color-primary-600);
+  text-decoration: none;
+  transition: color var(--transition-base);
+}
+
+.contact-card__email:hover,
+.contact-card__phone:hover {
+  color: var(--color-primary-700);
+  text-decoration: underline;
+}
+
+.contact-card__email:focus-visible,
+.contact-card__phone:focus-visible {
+  outline: 2px solid var(--color-primary-500);
+  outline-offset: 2px;
+  border-radius: var(--borderRadius-sm);
+}
+
+/* ==========================================================================
+   Hours
+   ========================================================================== */
+
+.contact-card--hours .contact-card__content {
+  width: 100%;
+}
+
+.contact-hours {
+  margin: 0;
+}
+
+.contact-hours__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--spacing-4);
+  padding: var(--spacing-2) 0;
+  border-bottom: 1px solid var(--color-neutral-100);
+}
+
+.contact-hours__row:last-child {
+  border-bottom: none;
+}
+
+.contact-hours__day {
+  font-weight: var(--fontWeight-medium);
+  color: var(--color-text-secondary);
+}
+
+.contact-hours__location {
+  display: block;
+  font-size: var(--fontSize-xs);
+  font-weight: var(--fontWeight-normal);
+  color: var(--color-text-tertiary);
+}
+
+.contact-hours__time {
+  margin: 0;
+  color: var(--color-text-primary);
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   Transport (override for contact page)
+   ========================================================================== */
+
+.contact-card--transport .transport-lines {
+  margin-top: var(--spacing-2);
+}
+
+/* ==========================================================================
+   Additional Information
+   ========================================================================== */
+
+.contact-additional {
+  padding: var(--spacing-6);
+  background: var(--color-neutral-50);
+  border-radius: var(--borderRadius-lg);
+  color: var(--color-text-secondary);
+  line-height: var(--lineHeight-relaxed);
+}
+
+.contact-additional p:last-child {
+  margin-bottom: 0;
+}
+
+.contact-additional a {
+  color: var(--color-primary-600);
+}
+
+.contact-additional a:hover {
+  text-decoration: underline;
+}
+
+/* ==========================================================================
+   Map
+   ========================================================================== */
+
+.contact-map {
+  height: fit-content;
+}
+
+@media (min-width: 1024px) {
+  .contact-map {
+    position: sticky;
+    top: calc(var(--header-height) + var(--spacing-4));
+  }
+}
+
+.contact-map__embed {
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--borderRadius-lg);
+  overflow: hidden;
+}
+
+.contact-map__embed iframe {
+  display: block;
+  width: 100%;
+  height: 350px;
+  border: none;
+}
+
+@media (min-width: 768px) {
+  .contact-map__embed iframe {
+    height: 400px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .contact-map__embed iframe {
+    height: 500px;
+  }
+}
+
+.contact-map__figure {
+  margin: 0;
+  position: relative;
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--borderRadius-lg);
+  overflow: hidden;
+}
+
+.contact-map__image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.contact-map__caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: var(--spacing-4);
+  background: linear-gradient(transparent, rgb(0 0 0 / 0.7));
+  text-align: center;
+}
+
+.contact-map__placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  background: var(--color-neutral-100);
+  border-radius: var(--borderRadius-lg);
+  color: var(--color-text-tertiary);
+}
+
+.contact-map__placeholder svg {
+  margin-bottom: var(--spacing-3);
+  opacity: 0.5;
+}
+
+.contact-map__placeholder p {
+  margin: 0;
+}

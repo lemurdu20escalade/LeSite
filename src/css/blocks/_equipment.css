@@ -1,0 +1,90 @@
+/**
+ * Equipment Block
+ *
+ * Provided and required equipment in two columns.
+ *
+ * @package Lemur
+ */
+
+.block-equipment {
+  padding: var(--spacing-16) 0;
+}
+
+.block-equipment__title {
+  font-size: var(--fontSize-3xl);
+  font-weight: var(--fontWeight-bold);
+  text-align: center;
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-12);
+
+  @media (min-width: 768px) {
+    font-size: var(--fontSize-4xl);
+  }
+}
+
+.equipment-columns {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-8);
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Equipment Column */
+.equipment-column {
+  background-color: var(--color-neutral-50);
+  border-radius: var(--borderRadius-lg);
+  padding: var(--spacing-6);
+}
+
+.equipment-column--provided {
+  border-top: 4px solid var(--color-success-500);
+}
+
+.equipment-column--required {
+  border-top: 4px solid var(--color-warning-500);
+}
+
+.equipment-column__title {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  font-size: var(--fontSize-xl);
+  font-weight: var(--fontWeight-semibold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-4);
+}
+
+.equipment-column__icon {
+  font-size: var(--fontSize-xl);
+}
+
+/* Equipment List */
+.equipment-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.equipment-list__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: var(--spacing-2);
+  padding: var(--spacing-3) 0;
+  border-bottom: 1px solid var(--color-neutral-200);
+  color: var(--color-text-primary);
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  small {
+    color: var(--color-text-tertiary);
+    font-size: var(--fontSize-sm);
+    font-style: italic;
+  }
+}

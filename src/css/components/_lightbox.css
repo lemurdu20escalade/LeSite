@@ -1,0 +1,254 @@
+/**
+ * Lightbox Component
+ *
+ * Full-screen image viewer with navigation and transitions.
+ *
+ * @package Lemur
+ */
+
+/* ==========================================================================
+   Lightbox Container
+   ========================================================================== */
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: var(--zIndex-modal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Alpine.js transitions */
+.lightbox--enter {
+  transition: opacity var(--transition-base);
+}
+
+.lightbox--enter-start {
+  opacity: 0;
+}
+
+.lightbox--enter-end {
+  opacity: 1;
+}
+
+.lightbox--leave {
+  transition: opacity var(--transition-base);
+}
+
+.lightbox--leave-start {
+  opacity: 1;
+}
+
+.lightbox--leave-end {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lightbox--enter,
+  .lightbox--leave {
+    transition: none;
+  }
+}
+
+/* ==========================================================================
+   Backdrop
+   ========================================================================== */
+
+.lightbox__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgb(0 0 0 / 0.95);
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   Container & Content
+   ========================================================================== */
+
+.lightbox__container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-16) var(--spacing-4);
+}
+
+@media (min-width: 768px) {
+  .lightbox__container {
+    padding: var(--spacing-8);
+  }
+}
+
+.lightbox__content {
+  position: relative;
+  max-width: 90vw;
+  max-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox__figure {
+  margin: 0;
+  position: relative;
+}
+
+.lightbox__image {
+  max-width: 90vw;
+  max-height: 75vh;
+  object-fit: contain;
+  border-radius: var(--borderRadius-md);
+}
+
+/* ==========================================================================
+   Close Button
+   ========================================================================== */
+
+.lightbox__close {
+  position: absolute;
+  top: var(--spacing-4);
+  right: var(--spacing-4);
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgb(255 255 255 / 0.1);
+  border: none;
+  border-radius: var(--borderRadius-full);
+  color: var(--color-white);
+  cursor: pointer;
+  transition: background-color var(--transition-base);
+  z-index: 10;
+}
+
+.lightbox__close:hover {
+  background: rgb(255 255 255 / 0.2);
+}
+
+.lightbox__close:focus-visible {
+  outline: 2px solid var(--color-white);
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   Navigation Buttons
+   ========================================================================== */
+
+.lightbox__nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgb(255 255 255 / 0.1);
+  border: none;
+  border-radius: var(--borderRadius-full);
+  color: var(--color-white);
+  cursor: pointer;
+  transition: background-color var(--transition-base), opacity var(--transition-base);
+  z-index: 10;
+}
+
+.lightbox__nav:hover:not(:disabled) {
+  background: rgb(255 255 255 / 0.2);
+}
+
+.lightbox__nav:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.lightbox__nav:focus-visible {
+  outline: 2px solid var(--color-white);
+  outline-offset: 2px;
+}
+
+.lightbox__nav--prev {
+  left: var(--spacing-4);
+}
+
+.lightbox__nav--next {
+  right: var(--spacing-4);
+}
+
+/* Hide navigation on small screens (use swipe) */
+@media (max-width: 639px) {
+  .lightbox__nav {
+    display: none;
+  }
+}
+
+/* ==========================================================================
+   Loader
+   ========================================================================== */
+
+.lightbox__loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 200px;
+  min-height: 200px;
+}
+
+.lightbox__spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgb(255 255 255 / 0.3);
+  border-top-color: var(--color-white);
+  border-radius: var(--borderRadius-full);
+  animation: lightbox-spin 0.8s linear infinite;
+}
+
+@keyframes lightbox-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lightbox__spinner {
+    animation: none;
+    border-top-color: var(--color-white);
+    border-right-color: var(--color-white);
+  }
+}
+
+/* ==========================================================================
+   Caption
+   ========================================================================== */
+
+.lightbox__caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: var(--spacing-4);
+  background: linear-gradient(transparent, rgb(0 0 0 / 0.8));
+  color: var(--color-white);
+  text-align: center;
+  font-size: var(--fontSize-sm);
+  border-radius: 0 0 var(--borderRadius-md) var(--borderRadius-md);
+}
+
+/* ==========================================================================
+   Counter
+   ========================================================================== */
+
+.lightbox__counter {
+  position: absolute;
+  bottom: var(--spacing-4);
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--color-white);
+  font-size: var(--fontSize-sm);
+  background: rgb(0 0 0 / 0.5);
+  padding: var(--spacing-2) var(--spacing-4);
+  border-radius: var(--borderRadius-full);
+}

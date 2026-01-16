@@ -1,0 +1,53 @@
+/**
+ * Semantic Colors
+ *
+ * Maps design tokens to semantic color roles.
+ * Uses CSS custom properties from _tokens.css.
+ *
+ * @package Lemur
+ */
+
+:root {
+  /* Text colors */
+  --color-text-primary: var(--color-neutral-900);
+  --color-text-secondary: var(--color-neutral-600);
+  --color-text-muted: var(--color-neutral-400);
+  --color-text-inverse: var(--color-neutral-50);
+  --color-text-link: var(--color-primary-600);
+  --color-text-link-hover: var(--color-primary-700);
+
+  /* Background colors */
+  --color-bg-primary: var(--color-neutral-50);
+  --color-bg-secondary: var(--color-neutral-100);
+  --color-bg-tertiary: var(--color-neutral-200);
+  --color-bg-inverse: var(--color-neutral-900);
+  --color-bg-accent: var(--color-primary-500);
+  --color-bg-accent-hover: var(--color-primary-600);
+
+  /* Border colors */
+  --color-border-default: var(--color-neutral-200);
+  --color-border-strong: var(--color-neutral-300);
+  --color-border-focus: var(--color-primary-500);
+
+  /* State colors */
+  --color-state-error: var(--color-error-500);
+  --color-state-error-bg: #fef2f2;
+  --color-state-error-border: #fecaca;
+  --color-state-error-text: #991b1b;
+  --color-state-warning: var(--color-warning-500);
+  --color-state-warning-bg: #fffbeb;
+  --color-state-warning-border: #fde68a;
+  --color-state-warning-text: #92400e;
+  --color-state-success: var(--color-success-500);
+  --color-state-success-bg: #f0fdf4;
+  --color-state-success-border: #bbf7d0;
+  --color-state-success-text: #166534;
+  --color-state-info: #3b82f6;
+  --color-state-info-bg: #eff6ff;
+  --color-state-info-border: #bfdbfe;
+  --color-state-info-text: #1e40af;
+
+  /* Footer colors */
+  --color-footer-border: var(--color-neutral-700);
+  --color-footer-muted: var(--color-neutral-400);
+}

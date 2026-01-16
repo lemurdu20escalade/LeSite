@@ -1,0 +1,113 @@
+/**
+ * Planning Page
+ *
+ * Styles for embedded Google Sheet planning.
+ *
+ * @package Lemur
+ */
+
+/* ==========================================================================
+   Page Header
+   ========================================================================== */
+
+.page-header {
+  text-align: center;
+  margin-bottom: var(--spacing-8);
+  padding-bottom: var(--spacing-6);
+  border-bottom: 1px solid var(--color-neutral-200);
+}
+
+.page-header__title {
+  font-size: var(--fontSize-3xl);
+  font-weight: var(--fontWeight-bold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-2);
+
+  @media (min-width: 768px) {
+    font-size: var(--fontSize-4xl);
+  }
+}
+
+.page-header__description {
+  font-size: var(--fontSize-lg);
+  color: var(--color-text-secondary);
+  max-width: var(--content-maxWidth);
+  margin: 0 auto;
+}
+
+/* ==========================================================================
+   Planning Section
+   ========================================================================== */
+
+.planning-section {
+  margin-bottom: var(--spacing-12);
+}
+
+/* ==========================================================================
+   Planning Embed
+   ========================================================================== */
+
+.planning-embed {
+  background: var(--color-white);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--borderRadius-lg);
+  overflow: hidden;
+}
+
+.planning-embed__iframe {
+  width: 100%;
+  height: 600px;
+  border: none;
+  display: block;
+
+  @media (min-width: 768px) {
+    height: 700px;
+  }
+
+  @media (min-width: 1024px) {
+    height: 800px;
+  }
+}
+
+/* ==========================================================================
+   Planning Placeholder
+   ========================================================================== */
+
+.planning-placeholder {
+  text-align: center;
+  padding: var(--spacing-12) var(--spacing-4);
+  background: var(--color-neutral-50);
+  border-radius: var(--borderRadius-lg);
+
+  p {
+    font-size: var(--fontSize-lg);
+    color: var(--color-text-secondary);
+    margin: 0;
+  }
+}
+
+/* ==========================================================================
+   Planning Note
+   ========================================================================== */
+
+.planning-note {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-3);
+  margin-top: var(--spacing-6);
+  padding: var(--spacing-4);
+  background: var(--color-warning-50);
+  border-left: 4px solid var(--color-warning-500);
+  border-radius: var(--borderRadius-md);
+}
+
+.planning-note__icon {
+  flex-shrink: 0;
+  color: var(--color-warning-600);
+}
+
+.planning-note p {
+  margin: 0;
+  color: var(--color-warning-800);
+  line-height: var(--lineHeight-relaxed);
+}

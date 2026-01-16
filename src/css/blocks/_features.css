@@ -1,0 +1,111 @@
+/**
+ * Features Block
+ *
+ * Feature grid for showcasing benefits or services.
+ *
+ * @package Lemur
+ */
+
+.block-features {
+  padding: var(--spacing-16) 0;
+}
+
+.block-features__header {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto var(--spacing-12);
+}
+
+.block-features__title {
+  font-size: var(--fontSize-3xl);
+  font-weight: var(--fontWeight-bold);
+  margin-bottom: var(--spacing-4);
+}
+
+.block-features__subtitle {
+  font-size: var(--fontSize-lg);
+  color: var(--color-text-secondary);
+}
+
+.block-features__grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.block-features__grid > * {
+  width: 100%;
+  max-width: 400px;
+}
+
+@media (min-width: 640px) {
+  .block-features__grid > * {
+    width: calc(50% - 0.75rem);
+  }
+}
+
+@media (min-width: 1024px) {
+  .block-features__grid > * {
+    width: calc(25% - 1.125rem);
+  }
+}
+
+/* Feature item */
+.feature {
+  text-align: center;
+  padding: var(--spacing-6);
+}
+
+.feature__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  margin-bottom: var(--spacing-4);
+  background-color: var(--color-primary-100);
+  color: var(--color-primary-600);
+  border-radius: var(--borderRadius-full);
+
+  svg {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+.feature__title {
+  font-size: var(--fontSize-xl);
+  font-weight: var(--fontWeight-semibold);
+  margin-bottom: var(--spacing-2);
+}
+
+.feature__text {
+  color: var(--color-text-secondary);
+  margin-bottom: 0;
+}
+
+/* Variant: Left aligned */
+.block-features--left {
+  .feature {
+    text-align: left;
+  }
+
+  .feature__icon {
+    margin-left: 0;
+  }
+}
+
+/* Variant: With cards */
+.block-features--cards {
+  .feature {
+    background-color: var(--color-bg-primary);
+    border: 1px solid var(--color-border-default);
+    border-radius: var(--borderRadius-lg);
+    transition: border-color var(--transition-fast);
+
+    &:hover {
+      border-color: var(--color-primary-300);
+    }
+  }
+}
